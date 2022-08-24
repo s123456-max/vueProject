@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    首页
     <router-view/>
   </div>
 </template>
@@ -9,6 +8,15 @@
 
 export default {
   name: 'App',
+  mounted(){
+    console.log(this.$store)
+    window.addEventListener('unload',this.saveState)
+  },
+  methods:{
+    saveState(){
+      sessionStorage.setItem('state',JSON.stringify(this.$store.state.user))
+    }
+  }
 }
 </script>
 
